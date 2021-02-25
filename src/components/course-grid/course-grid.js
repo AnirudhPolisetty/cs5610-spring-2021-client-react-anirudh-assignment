@@ -6,12 +6,12 @@ import './course-grid.css'
 const CourseGrid = ({courses, updateCourse, deleteCourse}) =>
     <>
         <div className="row title">
-            <div className="col-4">Recent Documents</div>
-            <div className="col-5">
+            <div className="col-4 d-none d-sm-block">Recent Documents</div>
+            <div className="col-4 d-none d-sm-block">
                 Owned by me
                 <i className="fa fa-sort-down"></i>
             </div>
-            <div className="col-3">
+            <div className="col-4 icon-div">
             <Link to="/courses/table">
                 <i className="fas fa-list float-right"></i>
             </Link>
