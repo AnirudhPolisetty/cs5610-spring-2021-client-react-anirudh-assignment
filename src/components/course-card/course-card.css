@@ -1,0 +1,24 @@
+.full-card {
+    padding-bottom: 30px;
+}
+
+.fa-edit {
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.fa-times {
+    padding-right: 5px;
+}
+
+.fa-times:hover {
+    background-color: grey;
+}
+
+.fa-check:hover {
+    background-color: grey;
+}
+
+.fa-edit:hover {
+    background-color: grey;
+}

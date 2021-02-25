@@ -1,0 +1,21 @@
+.fa-file {
+    padding-right: 10px;
+    color: blue;
+}
+
+.fa-check {
+    color: green;
+    padding-right: 5px;
+}
+
+.fa-times {
+    color: red;
+}
+
+.fa-edit {
+    color: blue;
+}
+
+.row-css {
+    background-color: paleturquoise;
+}

@@ -1,0 +1,90 @@
+.col-3 {
+    padding-top:20px;
+}
+.col-1 {
+    padding-left:15px;
+    padding-top:20px;
+}
+
+.wbdv-sticky-top {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background-color: #606060;
+    font-family: "Open Sans", sans-serif;
+    color: white;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: #E8E8E8;
+}
+
+
+.fa-times {
+    color: white;
+    padding-left: 50px;
+}
+
+.modules .sub-module {
+    padding-right: 40px;
+}
+
+.fa-plus {
+    color: white;
+}
+
+.sub-pills .nav-pills>li {
+    background-color: dimgrey;
+    padding: 0;
+    margin-left: 40px;
+}
+
+.sub-pills {
+    padding-top: 70px;
+}
+
+.nav-pills a {
+    color: #fff;
+}
+
+.nav-pills .nav-item a.active {
+    background-color: #303030;
+}
+
+.nav-pills .nav-item {
+    border: none;
+    padding: 5px 20px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px 2px;
+}
+
+.modules .col-4 {
+    border: none;
+    padding: 80px 20px;
+    background-color: #303030;
+}
+
+.modules .col-4 .active {
+    background-color: cornflowerblue;
+    margin-top: 10px;
+}
+
+.modules .list-group-item {
+    border: none;
+    padding: 15px 50px;
+    margin: 10px 50px;
+    background-color: #606060;
+    color: white;
+}
+
+.wbdv-padding-5px {
+    padding: 5px;
+}
+
+.wbdv-sticky-child {
+    width: 100%;
+    z-index: 1;
+    font-family: "Open Sans", sans-serif;
+}

@@ -1,0 +1,11 @@
+.title {
+    background-color: #E8E8E8;
+    padding: 15px;
+    border-bottom: solid gainsboro;
+    border-width: thin;
+    color: #696969;
+}
+
+.fa-sort, .fa-folder {
+    padding-right: 15px;
+}

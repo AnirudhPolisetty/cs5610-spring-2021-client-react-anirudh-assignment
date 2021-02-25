@@ -1,0 +1,33 @@
+.wbdv-sticky-top {
+    margin: 0;
+    width: 100%;
+    background-color: #323975;
+    font-family: "Open Sans", sans-serif;
+    color: white;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: #E8E8E8;
+}
+
+.form-control {
+    font-style:italic
+}
+
+
+.fa-plus-circle {
+    color: red;
+}
+
+.plus-icon-fixed {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    color: indianred;
+    z-index: 1;
+}
+
+.wbdv-padding-5px {
+    padding: 5px;
+}
