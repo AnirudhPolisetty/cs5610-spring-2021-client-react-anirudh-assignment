@@ -11,26 +11,12 @@ const Home = () => {
     <>
         <h1>Home</h1>
         <div className="list-group">
-            <Link to="/courses/manager" className="list-group-item">
-                Course Manager
-            </Link>
             <Link to="/courses/grid" className="list-group-item">
                 Course Grid
             </Link>
             <Link to="/courses/table" className="list-group-item">
                 Course Table
             </Link>
-            <Link to="/courses/editor" className="list-group-item">
-                Course Editor
-            </Link>
-        </div>
-        <div>
-            <Switch>
-            <Route path="/courses/manager" component={CourseManager} />
-            <Route path="/courses/table" component={CourseTable} />
-            <Route path="/courses/grid" component={CourseGrid} />
-            <Route path="/courses/editor" component={CourseEditor} />
-            </Switch>
         </div>
     </>
     )}

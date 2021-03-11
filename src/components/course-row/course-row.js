@@ -28,13 +28,13 @@ const CourseRow = (
             <td>
                 {
                     !editing &&
-                    <Link to="/courses/editor">
+                    <Link to={`/courses/table/edit/${course._id}`}>
                         <i className="fas fa-file"></i>
                     </Link>
                 }
                 {
                     !editing &&
-                    <Link to="/courses/editor">
+                    <Link to={`/courses/table/edit/${course._id}`}>
                         {title}
                     </Link>
                 }

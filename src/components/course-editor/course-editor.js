@@ -1,120 +1,59 @@
-import React from 'react'
-import {Link} from "react-router-dom";
+import React, {useState,useEffect} from 'react'
+import {Link, useParams, useHistory} from "react-router-dom";
+import {combineReducers, createStore} from "redux";
+import {Provider} from "react-redux";
+import ModuleList from "./module-list";
+import LessonTabs from "./lesson-tabs";
+import TopicPills from "./topic-pills";
+import moduleReducer from "../../reducers/module-reducer";
+import lessonReducer from "../../reducers/lesson-reducer";
+import topicReducer from "../../reducers/topic-reducer";
+import moduleService from "../../services/module-service";
+import './course-editor.css'
+
+const reducer = combineReducers({
+    moduleReducer: moduleReducer,
+    lessonReducer: lessonReducer,
+    topicReducer: topicReducer
+})
+const store = createStore(reducer)
 
 
-const CourseEditor = ({history}) =>
-    <div>
-        <h4>
-            <Link to="/courses/table">
-                <i className="fas fa-arrow-left"></i>
-            </Link>
-            Course Editor
-            <i onClick={() => history.goBack()}
-               className="fas fa-times float-right"></i>
-        </h4>
-        <div className="wbdv-sticky-top wbdv-padding-5px">
+const CourseEditor = ({history, course}) => {
+    const [courseTitle, setCourseTitle] = useState('')
+    const {layout, courseId, moduleId, lessonId} = useParams();
+    useEffect(() => {
+        moduleService.findCourseById(courseId).then((response) => {
+            setCourseTitle(response.title);
+        })
+    }, [courseId])
+    return(
+        <Provider store={store}>
+            <>
+            <h4>
+                <Link to={`/courses/${layout}`}>
+                    <i className="fas fa-arrow-left"></i>
+                </Link>
+                {courseTitle}
+                <i className="fas fa-times float-right"
+                   onClick={() => history.goBack()}></i>
+            </h4>
             <div className="row">
-                <div className="col-1">
-                    <i className="fa fa-times fa-lg"></i>
+                <div className="col-3">
+                    <ModuleList/>
                 </div>
-
-                <div className="col-3 d-none d-lg-block">
-                    CS5610 - WebDev
-                </div>
-
-                <div className="col-8">
-                    <ul className="nav nav-pills nav-justified">
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Build</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link active" href="#">Pages</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Theme</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Store</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Apps</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Settings</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                <i className="fa fa-plus"></i>
-                            </a>
-                        </li>
-                    </ul>
+                <div className="col-9">
+                    {
+                        moduleId && <LessonTabs/>
+                    }
+                    <br/>
+                    {
+                        lessonId && <TopicPills/>
+                    }
                 </div>
             </div>
-        </div>
-
-        <div className="wbdv-sticky-child wbdv-padding-5px">
-            <div className="row modules">
-                <div className="col-4">
-                    <ul className="list-group">
-                        <li className="list-group-item">
-                            Module 1 - jQuery
-                            <i className="pull-right fa fa-times"></i>
-                        </li>
-                        <li className="list-group-item active">
-                            Module 2 - React
-                            <i className="pull-right fa fa-times"></i>
-                        </li>
-                        <li className="list-group-item">
-                            Module 3 - Redux
-                            <i className="pull-right fa fa-times"></i>
-                        </li>
-                        <li className="list-group-item">
-                            Module 4 - Native
-                            <i className="pull-right fa fa-times"></i>
-                        </li>
-                        <li className="list-group-item">
-                            Module 5 - Angular
-                            <i className="pull-right fa fa-times"></i>
-                        </li>
-                        <li className="list-group-item">
-                            Module 6 - Node
-                            <i className="pull-right fa fa-times"></i>
-                        </li>
-                        <li className="list-group-item">
-                            Module 7 - Mongo
-                            <i className="pull-right fa fa-times"></i>
-                        </li>
-                        <li className="nav-item sub-module">
-                            <a className="nav-link" href="#">
-                                <i className="pull-right fa fa-plus fa-2x"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div className="col-8 sub-pills">
-                    <ul className="nav nav-pills">
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Topic 1</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link active" href="#">Topic 2</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Topic 3</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Topic 4</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                <i className="fa fa-plus"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+            </>
+        </Provider>)
+}
 
 export default CourseEditor

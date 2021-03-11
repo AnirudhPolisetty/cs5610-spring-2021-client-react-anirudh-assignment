@@ -1,4 +1,4 @@
-.col-3 {
+/*.col-3 {
     padding-top:20px;
 }
 .col-1 {
@@ -88,3 +88,12 @@ body {
     z-index: 1;
     font-family: "Open Sans", sans-serif;
 }
+*/
+.topic-items {
+    color: seagreen;
+}
+
+.topic-items:hover {
+    color: cadetblue;
+}
+

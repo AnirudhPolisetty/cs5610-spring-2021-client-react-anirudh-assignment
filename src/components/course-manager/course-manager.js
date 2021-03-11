@@ -1,10 +1,10 @@
 import React from 'react'
 import CourseTable from "../course-table/course-table";
 import CourseGrid from "../course-grid/course-grid";
-import CourseEditor from "../course-editor/course-editor";
 import {Route, Switch} from "react-router-dom";
 import courseService, {findAllCourses, findCourseById} from "../../services/course-service";
 import './course-manager.css'
+import CourseEditor from "../course-editor/course-editor";
 
 class CourseManager extends React.Component {
     state = {
@@ -92,24 +92,19 @@ class CourseManager extends React.Component {
                 <div>
                     <i onClick={this.addCourse} className="fa fa-plus-circle fa-2x plus-icon-fixed"></i>
                 </div>
-                    <Route path="/courses/table">
+                    <Route path="/courses/table" exact={true}>
                         <CourseTable
                             updateCourse={this.updateCourse}
                             deleteCourse={this.deleteCourse}
                             courses={this.state.courses}/>
                     </Route>
 
-                    <Route path="/courses/grid">
+                    <Route path="/courses/grid" exact={true}>
                         <CourseGrid
                             updateCourse={this.updateCourse}
                             deleteCourse={this.deleteCourse}
                             courses={this.state.courses}/>
                     </Route>
-
-                <Route path="/courses/editor"
-                       render={(props) => <CourseEditor {...props}/>}>
-                </Route>
-
             </div>
         )
     }
