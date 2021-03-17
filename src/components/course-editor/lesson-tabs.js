@@ -23,24 +23,24 @@ const LessonTabs = (
         //console.log("LOAD LESSONS FOR MODULE: " + moduleId)
         if(moduleId !== "undefined" && typeof moduleId !== "undefined") {
             findLessonsForModule(moduleId)
-        } else  {
-            reset()
+        } else {
+            reset(lessonId)
         }
-    }, [moduleId])
+    }, [moduleId, courseId])
     return(
         <div>
             <h2>Lessons</h2>
             <ul className="nav nav-pills">
                 {
                     lessons.map(lesson =>
-                            <li className="nav-item" key={lesson._id}>
+                            <li className="nav-item active" key={`${lesson._id}`}>
                                 <EditableItem
                                     //key={lesson._id}
-                                    active={lesson._id === lessonId}
                                     to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                                     item={lesson}
                                     updateItem={updateLessonForModule}
                                     deleteItem={deleteLessonForModule}
+                                    active={lesson._id === lessonId}
                                 />
                             </li>
                         )
@@ -75,9 +75,9 @@ const dtpm = (dispatch) => ({
         lessonService.deleteLessonForModule(lessonToDelete._id)
             .then(status => dispatch({type: "DELETE_LESSON", lessonToDelete: lessonToDelete}))
     },
-    reset : () => {
+    reset: (lessonId) => {
         dispatch({
-            type: "CLEAR_LESSONS",
+            type: "CLEAR_LESSON",
         })
     }
 })

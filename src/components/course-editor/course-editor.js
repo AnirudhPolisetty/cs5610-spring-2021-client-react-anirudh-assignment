@@ -43,13 +43,12 @@ const CourseEditor = ({history, course}) => {
                     <ModuleList/>
                 </div>
                 <div className="col-9">
-                    {
-                        moduleId && <LessonTabs/>
-                    }
+                    <LessonTabs/>
+
                     <br/>
-                    {
-                        lessonId && <TopicPills/>
-                    }
+
+                      <TopicPills/>
+
                 </div>
             </div>
             </>

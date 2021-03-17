@@ -20,27 +20,29 @@ const TopicPills = (
     }) => {
     const {layout, courseId, moduleId, lessonId, topicId} = useParams();
     useEffect(() => {
-        if (lessonId !== "undefined" && typeof lessonId !== "undefined" && moduleId !== "undefined" && typeof moduleId !== "undefined") {
-            findTopicsForLesson(lessonId);
+        if (lessonId != "undefined" &&
+            typeof lessonId != "undefined" &&
+            moduleId != "undefined" &&
+            typeof moduleId != "undefined" ) {
+            findTopicsForLesson(lessonId)
+        } else {
+            clearTopics(topicId)
         }
-        else {
-            clearTopics()
-        }
-    },[moduleId, lessonId]);
+    },[lessonId, moduleId]);
     return(
         <div>
             <h2>Topics</h2>
             <ul className="nav nav-pills">
                 {
                     topics.map(topic =>
-                        <li className="nav-link" key={topic._id}>
+                        <li className="nav-tabs active" key={`${topic._id}`}>
                             <EditableItem
                                 //key={topic._id}
-                                active={topic._id === topicId}
                                 to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
-                                item={topic}
                                 updateItem={updateTopicForLesson}
                                 deleteItem={deleteTopicForLesson}
+                                item={topic}
+                                active={topic._id === topicId}
                             />
                         </li>
                     )
@@ -56,9 +58,9 @@ const stpm = (state) => ({
 })
 
 const dtpm = (dispatch) => ({
-    clearTopics: () => {
+    clearTopics: (topicId) => {
         dispatch({
-            type: "CLEAR_TOPICS",
+            type: "CLEAR_TOPIC",
         })
     },
     findTopicsForLesson: (lessonId) => {
@@ -66,7 +68,7 @@ const dtpm = (dispatch) => ({
         //console.log(lessonId)
         topicService.findTopicsForLesson(lessonId)
             .then(topics => dispatch({
-                type: "FIND_LESSONS",
+                type: "FIND_TOPICS",
                 topics
             }))
     },

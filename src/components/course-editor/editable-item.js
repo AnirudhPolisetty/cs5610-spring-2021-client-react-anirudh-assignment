@@ -15,22 +15,19 @@ const EditableItem = (
         <>
             {
                 !editing &&
-                <div className="row">
-                    <div className="col-6">
-                        <Link className={`nav-link ${active ? 'active' : ''}`} to={to} exact={true}>
-                            {item.title}
-                        </Link>
-                    </div>
-                    <div className="col-6">
-                        <i onClick={() => setEditing(true)} className="fas fa-edit"></i>
-                    </div>
-                </div>
+                <>
+                    <Link className={`nav-link ${active?'active':''}`} to={to}>
+                        {item.title}
+                    </Link>
+                    <i onClick={() => setEditing(true)} className="fas fa-2x fa-edit float-right text-info p-1"/>
+                </>
             }
             {
                 editing &&
                 <>
                     <input
-                        onChange={(e) => setItemCache({...itemCache, title: e.target.value})}
+                        onChange={(e) => setItemCache({...itemCache,
+                            title: e.target.value})}
                         value={itemCache.title}/>
 
                     <i onClick={() => {
@@ -38,8 +35,8 @@ const EditableItem = (
                         updateItem(itemCache)
                     }} className="fas fa-check"></i>
                     <i onClick={() => {
-                        setEditing(false)
                         deleteItem(item)
+                        setEditing(false)
                     }} className="fas fa-times"></i>
 
 
