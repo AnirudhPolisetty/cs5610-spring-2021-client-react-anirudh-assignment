@@ -1,6 +1,6 @@
 //const TOPICS_URL = "https://wbdv-generic-server.herokuapp.com/api/001029510/topics";
-//const WIDGETS_URL = "http://localhost:8080/api"
-const WIDGETS_URL = "https://polar-beach-60782.herokuapp.com/api"
+const WIDGETS_URL = "http://localhost:8080/api"
+//const WIDGETS_URL = "https://polar-beach-60782.herokuapp.com/api"
 
 export const createWidget = (tid, widget) =>
     fetch(`${WIDGETS_URL}/topics/${tid}/widgets`, {

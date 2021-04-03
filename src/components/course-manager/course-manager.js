@@ -4,13 +4,16 @@ import CourseGrid from "../course-grid/course-grid";
 import {Route, Switch} from "react-router-dom";
 import courseService, {findAllCourses, findCourseById} from "../../services/course-service";
 import './course-manager.css'
-import CourseEditor from "../course-editor/course-editor";
+//import CourseEditor from "../course-editor/course-editor";
+//import CalanderTable from "../calander-table/calander-table";
+//import calanderService, {findAllHolidaysForCountry_Year} from "../../services/calander-service"
+
 
 class CourseManager extends React.Component {
     state = {
         courses: [],
         qwe: 123,
-        sdf: 456
+        sdf: 456,
     }
 
     handleChange = (event) => {
@@ -27,9 +30,15 @@ class CourseManager extends React.Component {
             })))
     }
 
-    componentDidMount = () =>
+    componentDidMount = () => {
         findAllCourses()
             .then(courses => this.setState({courses}))
+
+       /* findAllHolidaysForCountry_Year()
+            .then(holidays =>
+                this.setState({holidays}))*/
+
+    }
 /*
     findCourseById = (courseToFind) => {
         courseService.findCourseById(courseToFind._id)
@@ -105,6 +114,11 @@ class CourseManager extends React.Component {
                             deleteCourse={this.deleteCourse}
                             courses={this.state.courses}/>
                     </Route>
+
+                {/*<Route path="/courses/calander" exact={true}>
+                        <CalanderTable
+                            days = {this.state.days}/>
+                    </Route>*/}
             </div>
         )
     }

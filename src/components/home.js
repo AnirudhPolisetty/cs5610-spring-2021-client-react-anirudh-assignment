@@ -17,6 +17,9 @@ const Home = () => {
             <Link to="/courses/table" className="list-group-item">
                 Course Table
             </Link>
+            <Link to="/courses/calander" className="list-group-item">
+                Course Calandar
+            </Link>
         </div>
     </>
     )}

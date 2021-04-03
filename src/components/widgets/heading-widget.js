@@ -39,11 +39,13 @@ const HeadingWidget = ({widget, editing, setEditingWidget}) => {
                 editing &&
                 <>
                     <select
-                        onChange={(event) => handleTypeChange(event.target.value)}
-                        value={itemCache.type}
+                        onChange={(event) =>
+                            handleTypeChange(event.target.value)} value={itemCache.type}
                         className="form-control">
                         <option value={"HEADING"}>HEADING</option>
                         <option value={"PARAGRAPH"}>PARAGRAPH</option>
+                        <option value={"LIST"}>LIST</option>
+                        <option value={"IMAGE"}>IMAGE</option>
                     </select>
                     <input
                         onChange={(event) => handleTextChange(event.target.value)}
