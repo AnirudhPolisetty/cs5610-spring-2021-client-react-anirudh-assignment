@@ -20,6 +20,7 @@ export default class CourseTable
                         <td>Title</td>
                         <td className="d-none d-sm-table-cell">Owned by</td>
                         <td className="d-none d-md-table-cell">Last modified</td>
+                        <td>Quizzes</td>
                         <td>
                             <Link to="/courses/grid">
                                 <i className="fa fa-th float-right"></i>
