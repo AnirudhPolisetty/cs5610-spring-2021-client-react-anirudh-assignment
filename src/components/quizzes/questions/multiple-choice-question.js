@@ -1,17 +1,26 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
-const MultipleChoiceQuestion = ({question}) => {
+const MultipleChoiceQuestion = ({question, scored, questions, setQuestions}) => {
     const [answer, setAnswer] = useState("");
-    const [btn, setBtn] = useState(false);
+    //const [btn, setBtn] = useState(false);
+    useEffect(() => {
+        if (scored) {
+            const notRequired = questions.filter(qu => qu._id !== question._id);
+            const required = questions.find(qu => qu._id === question._id);
+            required.answer = answer;
+            const updatedQuestions = [...notRequired, required];
+            setQuestions(updatedQuestions);
+        }
+    }, [scored])
     return(
         <div>
             <h4>
                 {question.question}
                 {
-                    btn && question.correct === answer && <i className="fas fa-check text-success"></i>
+                    scored && question.correct === answer && <i className="fas fa-check text-success"></i>
                 }
                 {
-                    btn && question.correct !== answer && <i className="fas fa-times text-danger"></i>
+                    scored && question.correct !== answer && <i className="fas fa-times text-danger"></i>
                 }
             </h4>
             <ul className="list-group">
@@ -19,8 +28,8 @@ const MultipleChoiceQuestion = ({question}) => {
                     question.choices.map((choice) => {
                         return (
                             <li className={`list-group-item
-                            ${btn && choice === question.correct ? "list-group-item-success" : ""}
-                            ${btn && answer !== question.correct && answer === choice ? 
+                            ${scored && choice === question.correct ? "list-group-item-success" : ""}
+                            ${scored && answer !== question.correct && answer === choice ? 
                                 "list-group-item-danger" : ""}`}>
                                 <label>
                                     <input
@@ -29,16 +38,16 @@ const MultipleChoiceQuestion = ({question}) => {
                                         type="radio"
                                         name={question._id}
                                         value={choice}
-                                        disabled={btn}
+                                        disabled={scored}
                                     />
                                     {choice}
                                 </label>
                                 {
-                                    btn && choice === question.correct &&
+                                    scored && choice === question.correct &&
                                     <i className="fas fa-check text-success float-right"/>
                                 }
                                 {
-                                    btn && answer !== question.correct && answer === choice &&
+                                    scored && answer !== question.correct && answer === choice &&
                                     <i className="fas fa-times text-danger float-right"/>
                                 }
                             </li>
@@ -49,9 +58,6 @@ const MultipleChoiceQuestion = ({question}) => {
             <br/>
             <h6>Your answer: {answer}</h6>
             <br/>
-            <button onClick={() => setBtn(true)} className="btn btn-success" disabled={btn}>
-                Grade
-            </button>
         </div>
     )
 }
